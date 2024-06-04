@@ -1,17 +1,46 @@
 const productCategory = [
-    { id : 1, label : "Airpodes", value : "airpodes"},
-    { id : 2, label : "Camera", value : "camera"},
-    { id : 3, label : "Earphones", value : "earphones"},
-    { id : 4, label : "Mobiles", value : "mobiles"},
-    { id : 5, label : "Mouse", value : "Mouse"},
-    { id : 6, label : "Printers", value : "printers"},
-    { id : 7, label : "Processor", value : "processor"},
-    { id : 8, label : "Refrigerator", value : "refrigerator"},
-    { id : 9, label : "Speakers", value : "speakers"},
-    { id : 10, label : "Trimmers", value : "trimmers"},
-    { id : 11, label : "Televisions", value : "televisions"},
-    { id : 12, label : "Watches", value : "watches"},
-]
+  {
+    id: 1,
+    label: "iPhone",
+    value: "iphone",
+    image:
+      "https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/mwgcart/topzone/images/desktop/IP_Desktop.png",
+  },
+  {
+    id: 2,
+    label: "Mac",
+    value: "mac",
+    image:
+      "https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/mwgcart/topzone/images/desktop/Mac_Desktop.png",
+  },
+  {
+    id: 3,
+    label: "iPad",
+    value: "ipad",
+    image:
+      "https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/mwgcart/topzone/images/desktop/IPad_Desktop.png",
+  },
+  {
+    id: 4,
+    label: "Watch",
+    value: "watch",
+    image:
+      "https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/mwgcart/topzone/images/desktop/Watch_Desktop.png",
+  },
+  {
+    id: 5,
+    label: "Tai nghe, loa",
+    value: "tai nge, loa",
+    image:
+      "https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/mwgcart/topzone/images/desktop/Amthanh_Desktop.png",
+  },
+  {
+    id: 6,
+    label: "Phụ kiện",
+    value: "phụ kiện",
+    image:
+      "https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/mwgcart/topzone/images/desktop/PK_Desktop.png",
+  },
+];
 
-
-export default productCategory
+export default productCategory;

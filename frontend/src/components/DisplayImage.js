@@ -11,6 +11,7 @@ const DisplayImage = ({
         <div className='bg-white shadow-lg rounded max-w-5xl mx-auto p-4'>
                 <div className='w-fit ml-auto text-2xl hover:text-red-600 cursor-pointer' onClick={onClose}>
                     <CgClose/>
+                  
                 </div>
 
 

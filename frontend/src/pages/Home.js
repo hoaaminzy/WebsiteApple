@@ -1,28 +1,38 @@
-import React from 'react'
-import CategoryList from '../components/CategoryList'
-import BannerProduct from '../components/BannerProduct'
-import HorizontalCardProduct from '../components/HorizontalCardProduct'
-import VerticalCardProduct from '../components/VerticalCardProduct'
-
+import React, { useEffect, useState } from "react";
+import CategoryList from "../components/CategoryList";
+import BannerProduct from "../components/BannerProduct";
+import HorizontalCardProduct from "../components/HorizontalCardProduct";
+import VerticalCardProduct from "../components/VerticalCardProduct";
+import axios from "axios";
 const Home = () => {
+  // const [data, setData] = useState([])
+  // useEffect(()=>{
+  //   axios.post('http://localhost:8080/check-status-transaction', {
+  //     firstName: 'Fred',
+  //     lastName: 'Flintstone'
+  //   })
+  //   .then(function (response) {
+  //     console.log(response);
+  //   })
+  //   .catch(function (error) {
+  //     console.log(error);
+  //   });
+  // },[])
   return (
     <div>
-      <CategoryList/>
-      <BannerProduct/>
+      <BannerProduct />
+      <div style={{ background: "#3e3e3f" }}>
+        <CategoryList />
 
-      <HorizontalCardProduct category={"airpodes"} heading={"Top's Airpodes"}/>
-      <HorizontalCardProduct category={"watches"} heading={"Popular's Watches"}/>
+        <VerticalCardProduct category={"iphone"} heading={"iPhone"} />
+        <VerticalCardProduct category={"mac"} heading={"Mac"} />
 
-      <VerticalCardProduct category={"mobiles"} heading={"Mobiles"}/>
-      <VerticalCardProduct category={"Mouse"} heading={"Mouse"}/>
-      <VerticalCardProduct category={"televisions"} heading={"Televisions"}/>
-      <VerticalCardProduct category={"camera"} heading={"Camera & Photography"}/>
-      <VerticalCardProduct category={"earphones"} heading={"Wired Earphones"}/>
-      <VerticalCardProduct category={"speakers"} heading={"Bluetooth Speakers"}/>
-      <VerticalCardProduct category={"refrigerator"} heading={"Refrigerator"}/>
-      <VerticalCardProduct category={"trimmers"} heading={"Trimmers"}/>
+        <VerticalCardProduct category={"ipad"} heading={"iPad"} />
+        <VerticalCardProduct category={"watch"} heading={"Watch"} />
+        <VerticalCardProduct category={"televisions"} heading={"Televisions"} />
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

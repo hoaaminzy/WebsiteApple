@@ -139,7 +139,7 @@ const AdminEditProduct = ({
                {
                  productCategory.map((el,index)=>{
                    return(
-                     <option value={el.value} key={el.value+index}>{el.label}</option>
+                     <option value={el.value} key={el.value+index}>{el.value}</option>
                    )
                  })
                }
