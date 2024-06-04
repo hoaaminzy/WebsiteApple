@@ -30,6 +30,8 @@ const Home = () => {
         <VerticalCardProduct category={"ipad"} heading={"iPad"} />
         <VerticalCardProduct category={"watch"} heading={"Watch"} />
         <VerticalCardProduct category={"televisions"} heading={"Televisions"} />
+        <VerticalCardProduct category={"televisions"} heading={"Televisions"} />
+
       </div>
     </div>
   );
