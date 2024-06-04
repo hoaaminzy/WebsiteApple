@@ -146,6 +146,9 @@ const AdminEditProduct = ({
            </select>
 
            <label htmlFor='productImage' className='mt-3'>Product Image :</label>
+           <label htmlFor='productImage' className='mt-3'>Product Image1 :</label>
+           <label htmlFor='productImage' className='mt-3'>Product Image2 :</label>
+
            <label htmlFor='uploadImageInput'>
            <div className='p-2 bg-slate-100 border rounded h-32 w-full flex justify-center items-center cursor-pointer'>
                      <div className='text-slate-500 flex justify-center items-center flex-col gap-2'>

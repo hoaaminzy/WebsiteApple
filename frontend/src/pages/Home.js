@@ -23,15 +23,13 @@ const Home = () => {
       <BannerProduct />
       <div style={{ background: "#3e3e3f" }}>
         <CategoryList />
-
         <VerticalCardProduct category={"iphone"} heading={"iPhone"} />
         <VerticalCardProduct category={"mac"} heading={"Mac"} />
-
         <VerticalCardProduct category={"ipad"} heading={"iPad"} />
         <VerticalCardProduct category={"watch"} heading={"Watch"} />
         <VerticalCardProduct category={"televisions"} heading={"Televisions"} />
-        <VerticalCardProduct category={"televisions"} heading={"Televisions"} />
-
+        <VerticalCardProduct category={"test"} heading={"test"} />
+        <VerticalCardProduct category={"abc"} heading={"abc"} />
       </div>
     </div>
   );
