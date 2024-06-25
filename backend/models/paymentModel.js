@@ -24,6 +24,9 @@ const paymentSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    user: {
+      type: Object,
+    },
     products: {
       type: [productSchema],
       required: true,

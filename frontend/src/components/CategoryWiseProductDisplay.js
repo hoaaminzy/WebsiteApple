@@ -14,7 +14,9 @@ const CategoryWiseProductDisplay = ({ category, heading }) => {
   const loadingList = new Array(13).fill(null);
 
   const { fetchUserAddToCart } = useContext(Context);
-
+  function formatNumber(number) {
+    return new Intl.NumberFormat("vi-VN").format(number);
+  }
   const handleAddToCart = async (e, id) => {
     await addToCart(e, id);
     fetchUserAddToCart();
@@ -54,38 +56,55 @@ const CategoryWiseProductDisplay = ({ category, heading }) => {
             ))
           : data.map((product) => (
               <Col key={product?._id} xs={12} md={4} lg={3} className="mb-4">
-                <Link to={`/product/${product?._id}`} onClick={scrollTop}>
-                  <Card className="h-100">
-                    <Card.Img
-                      variant="top"
-                      src={product.productImage[0]}
-                      className="object-scale-down h-48"
-                    />
-                    <Card.Body>
-                      <Card.Title className="text-ellipsis line-clamp-1">
-                        {product?.productName}
-                      </Card.Title>
-                      <Card.Text className="text-muted">
-                        {product?.category}
-                      </Card.Text>
-                      <div className="d-flex justify-content-between">
-                        <span className="text-danger">
-                          {displayINRCurrency(product?.sellingPrice)}
-                        </span>
-                        <span className="text-muted text-decoration-line-through">
-                          {displayINRCurrency(product?.price)}
-                        </span>
-                      </div>
-                      <Button
-                        variant="danger"
-                        className="w-100 mt-3"
-                        onClick={(e) => handleAddToCart(e, product?._id)}
+                <Card
+                  style={{
+                    width: "18rem",
+                    borderRadius: "30px",
+                    padding: "20px",
+                    background: "#323232",
+                    minHeight: "450px",
+                  }}
+                  className="boxshadow"
+                >
+                  <Card.Img variant="top" src={product.productImage[0]} />
+                  <Card.Body className="d-flex flex-col justify-between">
+                    <Link to={`/product/${product?._id}`}>
+                      <Card.Title
+                        className="text-white text-center "
+                        style={{
+                          display: "-webkit-box",
+                          WebkitLineClamp: 2,
+                          WebkitBoxOrient: "vertical",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                        }}
                       >
-                        Add to Cart
-                      </Button>
-                    </Card.Body>
-                  </Card>
-                </Link>
+                        {product.productName}
+                      </Card.Title>
+                    </Link>
+                    <div
+                      style={{ width: "100%" }}
+                      className="flex items-center justify-between gap-3 "
+                    >
+                      <Card.Text
+                        className="text-white m-0"
+                        style={{
+                          textDecoration: "line-through !important",
+                        }}
+                      >
+                        {formatNumber(product?.price)}đ
+                      </Card.Text>
+                      <Card.Text className="fw-bold fs-4 text-white">
+                        {formatNumber(product?.sellingPrice)}đ
+                      </Card.Text>
+                    </div>
+                    <div className="flex justify-end">
+                      <Card.Text className="fw-bold text-white" style={{fontSize:'14px'}}>
+                       Đã bán({product?.star})
+                      </Card.Text>
+                    </div>
+                  </Card.Body>
+                </Card>
               </Col>
             ))}
       </Row>

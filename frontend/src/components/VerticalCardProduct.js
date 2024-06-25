@@ -11,6 +11,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { IoLogoApple } from "react-icons/io5";
 import Slider from "react-slick";
+import { FaApple } from "react-icons/fa";
 const VerticalCardProduct = ({ category, heading }) => {
   const settings = {
     dots: false,
@@ -50,10 +51,20 @@ const VerticalCardProduct = ({ category, heading }) => {
     fetchData();
   }, []);
 
+  const sortData = data.sort((a, b) => b.star - a.star);
+
   return (
     <div className="container mx-auto px-4 my-6 relative">
-      <div>
-        <h2 className="text-4xl font-semibold py-4 text-white text-center">{heading}</h2>
+      <div className="d-flex items-center justify-center gap-1  pb-5 pt-4">
+        <div className="text-white fs-1">
+          <FaApple />
+        </div>
+        <span
+          className=" d-flex items-center text-4xl font-semibold text-white text-center"
+          style={{ height: "100%" }}
+        >
+          {heading}
+        </span>
       </div>
 
       <div>
@@ -62,7 +73,7 @@ const VerticalCardProduct = ({ category, heading }) => {
             ? loadingList.map((product, index) => {
                 return (
                   <div key={index}>
-                    <Card style={{ width: "18rem", }} className="">
+                    <Card style={{ width: "18rem" }} className="">
                       <Card.Body>
                         <Card.Title></Card.Title>
                         <Card.Text></Card.Text>
@@ -82,40 +93,56 @@ const VerticalCardProduct = ({ category, heading }) => {
                   </div>
                 );
               })
-            : data.map((product, index) => {
+            : sortData.map((product, index) => {
                 return (
                   <div key={index}>
                     <Card
-                      style={{ width: "18rem",borderRadius:'10px',padding:'20px' ,background: "#323232" }}
-                      className=""
+                      style={{
+                        width: "18rem",
+                        borderRadius: "30px",
+                        padding: "20px",
+                        background: "#323232",
+                        minHeight: "450px",
+                      }}
+                      className="boxshadow"
                     >
                       <Card.Img variant="top" src={product.productImage[0]} />
-                      <Card.Body>
-                        <Card.Title className="text-white">
-                          {product.productName}
-                        </Card.Title>
-                        <Card.Text className="text-white">
-                          {product.description}
-                        </Card.Text>
+                      <Card.Body className="d-flex flex-col justify-between">
+                        <Link to={`product/${product?._id}`}>
+                          <Card.Title
+                            className="text-white text-center"
+                            style={{
+                              display: "-webkit-box",
+                              WebkitLineClamp: 2,
+                              WebkitBoxOrient: "vertical",
+                              overflow: "hidden",
+                              textOverflow: "ellipsis",
+                            }}
+                          >
+                            {product.productName}
+                          </Card.Title>
+                        </Link>
                         <div
                           style={{ width: "100%" }}
-                          className="d-flex justify-between align-items-center"
+                          className="flex items-center justify-between gap-3 "
                         >
-                          <Card.Text className=" text-red-600">
+                          <Card.Text
+                            className="text-white m-0"
+                            style={{
+                              textDecoration: "line-through !important",
+                            }}
+                          >
                             {formatNumber(product?.price)}đ
                           </Card.Text>
                           <Card.Text className="fw-bold fs-4 text-white">
                             {formatNumber(product?.sellingPrice)}đ
                           </Card.Text>
                         </div>
-                        <Link to={`product/${product?._id}`}>
-                          <Button
-                            className="d-flex align-items-center justify-center w-100"
-                            variant="primary"
-                          >
-                            Xem chi tiết sản phẩm
-                          </Button>
-                        </Link>
+                        <div className="flex justify-end">
+                          <Card.Text className="fw-bold text-white" style={{fontSize:'14px'}}>
+                            Đã bán({product?.star})
+                          </Card.Text>
+                        </div>
                       </Card.Body>
                     </Card>
                   </div>

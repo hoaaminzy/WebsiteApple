@@ -10,6 +10,7 @@ import SummaryApi from "./common";
 import Context from "./context";
 import { useDispatch } from "react-redux";
 import { setUserDetails } from "./store/userSlice";
+import { useLocation } from "react-router-dom";
 function App() {
   const dispatch = useDispatch();
   const [cartProductCount, setCartProductCount] = useState(0);
@@ -37,7 +38,7 @@ function App() {
 
     setCartProductCount(dataApi?.data?.count);
   };
-
+  const location = useLocation();
   useEffect(() => {
     /**user Details */
     fetchUserDetails();
@@ -48,18 +49,27 @@ function App() {
     <>
       <Context.Provider
         value={{
-          fetchUserDetails, // user detail fetch
-          cartProductCount, // current user add to cart product count,
+          fetchUserDetails,
+          cartProductCount,
           fetchUserAddToCart,
         }}
       >
         <ToastContainer position="top-center" />
-
-        <Header />
-        <main className="min-h-[calc(100vh-120px)] pt-16">
-          <Outlet />
-        </main>
-        <Footer />
+        {location.pathname.startsWith("/admin-panel") ? (
+          <>
+            <main className="">
+              <Outlet />
+            </main>
+          </>
+        ) : (
+          <>
+            <Header />
+            <main className="min-h-[calc(100vh-120px)] pt-16">
+              <Outlet />
+            </main>
+            <Footer />
+          </>
+        )}
       </Context.Provider>
     </>
   );

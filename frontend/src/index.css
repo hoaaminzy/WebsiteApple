@@ -17,7 +17,6 @@ code {
     monospace;
 }
 * {
-  text-decoration: none !important;
   list-style-type: none !important;
   padding: 0;
   box-sizing: border-box;
@@ -25,4 +24,7 @@ code {
 }
 .dropdown-toggle::after {
   display: none !important;
+}
+a {
+  text-decoration: none !important;
 }

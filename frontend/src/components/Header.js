@@ -18,7 +18,7 @@ import Button from "react-bootstrap/Button";
 import Badge from "react-bootstrap/Badge";
 import InputGroup from "react-bootstrap/InputGroup";
 import SummaryApi from "../common";
-
+import productCategory from "../helpers/productCategory";
 const Header = () => {
   const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
@@ -30,6 +30,13 @@ const Header = () => {
   const searchQuery = URLSearch.getAll("q");
   const [search, setSearch] = useState(searchQuery);
   const itemCart = useSelector((state) => state.cart.items);
+  function removeDiacriticsAndSpaces(word) {
+    return word
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/\s+/g, "")
+      .replace(/[,.-]/g, "");
+  }
 
   const handleLogout = async () => {
     const fetchData = await fetch(
@@ -83,10 +90,18 @@ const Header = () => {
               className="d-flex justify-content-between text-white"
               style={{ width: "100%" }}
             >
-              <Nav.Link as={Link} to="/">
-                iPhone
-              </Nav.Link>
-              <Nav.Link as={Link} to="/link1">
+              {productCategory?.map((cate, index) => {
+                return (
+                  <Nav.Link
+                    as={Link}
+                    to={`/${removeDiacriticsAndSpaces(cate.value)}`}
+                  >
+                    {cate.label}
+                  </Nav.Link>
+                );
+              })}
+
+              {/* <Nav.Link as={Link} to="/link1">
                 Mac
               </Nav.Link>
               <Nav.Link as={Link} to="/link2">
@@ -100,11 +115,11 @@ const Header = () => {
               </Nav.Link>
               <Nav.Link as={Link} to="/link5">
                 Phụ kiện
-              </Nav.Link>
-              <Nav.Link as={Link} to="/link6">
+              </Nav.Link> */}
+              <Nav.Link as={Link} to="/tekzone">
                 TekZone
               </Nav.Link>
-              <Nav.Link as={Link} to="/link7">
+              <Nav.Link as={Link} to="/topcare">
                 TopCare
               </Nav.Link>
             </Nav>
@@ -146,36 +161,46 @@ const Header = () => {
               // onClick={() => setMenuDisplay((prev) => !prev)}
             >
               {user?.role === ROLE.ADMIN ? (
-                <NavDropdown.Item as={Link} to="/admin-panel/all-products">
-                  Admin Panel
-                </NavDropdown.Item>
+                <>
+                  <NavDropdown.Item as={Link} to="/admin-panel/all-products">
+                    Quản lý hệ thống
+                  </NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/infor-user">
+                    Thông tin cá nhân
+                  </NavDropdown.Item>
+                </>
               ) : (
-                <NavDropdown.Item as={Link} to="/history-payments">
-                  Lịch sử mua hàng
-                </NavDropdown.Item>
+                <>
+                  <NavDropdown.Item as={Link} to="/history-payments">
+                    Lịch sử mua hàng
+                  </NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/infor-user">
+                    Thông tin cá nhân
+                  </NavDropdown.Item>
+                </>
               )}
             </NavDropdown>
-            {user?._id && (
-              <Nav.Link as={Link} to="/cart" className="position-relative">
-                <FaShoppingCart />
-                {itemCart?.length > 0 && (
-                  <Badge
-                    pill
-                    bg="danger"
-                    className="position-absolute top-0 start-100 translate-middle"
-                  >
-                    {itemCart.length}
-                  </Badge>
-                )}
-              </Nav.Link>
-            )}
+            {/* {user?._id && ( */}
+            <Nav.Link as={Link} to="/cart" className="position-relative">
+              <FaShoppingCart />
+              {itemCart?.length > 0 && (
+                <Badge
+                  pill
+                  bg="danger"
+                  className="position-absolute top-0 start-100 translate-middle"
+                >
+                  {itemCart.length}
+                </Badge>
+              )}
+            </Nav.Link>
+            {/* )} */}
             {user?._id ? (
               <Button variant="outline-light" onClick={handleLogout}>
-                Logout
+                Đăng xuất
               </Button>
             ) : (
               <Button variant="outline-light" as={Link} to="/login">
-                Login
+                Đăng nhập
               </Button>
             )}
           </Nav>

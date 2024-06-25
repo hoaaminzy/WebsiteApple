@@ -3,7 +3,7 @@ import { MdModeEditOutline } from "react-icons/md";
 import AdminEditProduct from "./AdminEditProduct";
 import SummaryApi from "../common/";
 
-const AdminProductCard = ({ data, fetchdata }) => {
+const AdminProductCard = ({ data, fetchdata, index }) => {
   const [editProduct, setEditProduct] = useState(false);
 
   function formatNumber(number) {
@@ -17,6 +17,7 @@ const AdminProductCard = ({ data, fetchdata }) => {
   return (
     <>
       <tr>
+        <td>{index + 1}</td>
         <td className="flex justify-center">
           <img src={data?.productImage[0]} alt={data.productName} width={100} />
         </td>

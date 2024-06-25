@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import { addItemToCart } from "../store/cartSlice";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-const VerticalCard = ({ loading, data = [] }) => {
+const VerticalCard = ({ loading, data = [], grid }) => {
   const dispatch = useDispatch();
   const loadingList = new Array(13).fill(null);
   const { fetchUserAddToCart } = useContext(Context);
@@ -21,7 +21,16 @@ const VerticalCard = ({ loading, data = [] }) => {
   };
 
   return (
-    <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,300px))] justify-center md:justify-between md:gap-4 overflow-x-scroll scrollbar-none transition-all">
+    <div
+      className=""
+      style={{
+        display: "grid",
+        gridTemplateColumns: ` ${
+          grid === "grid-3" ? "repeat(3,1fr)" : "repeat(4,1fr)"
+        }`,
+        gap: 50,
+      }}
+    >
       {loading
         ? loadingList.map((product, index) => {
             return (
@@ -48,39 +57,53 @@ const VerticalCard = ({ loading, data = [] }) => {
                 <Card
                   style={{
                     width: "18rem",
-                    borderRadius: "10px",
+                    borderRadius: "30px",
                     padding: "20px",
                     background: "#323232",
+                    minHeight: "450px",
                   }}
-                  className=""
+                  className="boxshadow"
                 >
                   <Card.Img variant="top" src={product.productImage[0]} />
-                  <Card.Body>
-                    <Card.Title className="text-white">
-                      {product.productName}
-                    </Card.Title>
-                    <Card.Text className="text-white">
-                      {product.description}
-                    </Card.Text>
+                  <Card.Body className="d-flex flex-col justify-between">
+                    <Link to={`/product/${product?._id}`}>
+                      <Card.Title
+                        className="text-white text-center"
+                        style={{
+                          display: "-webkit-box",
+                          WebkitLineClamp: 2,
+                          WebkitBoxOrient: "vertical",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                        }}
+                      >
+                        {product.productName}
+                      </Card.Title>
+                    </Link>
                     <div
                       style={{ width: "100%" }}
-                      className="d-flex justify-between align-items-center"
+                      className="flex items-center justify-between gap-3 "
                     >
-                      <Card.Text className=" text-red-600">
+                      <Card.Text
+                        className="text-white m-0"
+                        style={{
+                          textDecoration: "line-through !important",
+                        }}
+                      >
                         {formatNumber(product?.price)}đ
                       </Card.Text>
                       <Card.Text className="fw-bold fs-4 text-white">
                         {formatNumber(product?.sellingPrice)}đ
                       </Card.Text>
                     </div>
-                    <Link to={`product/${product?._id}`}>
-                      <Button
-                        className="d-flex align-items-center justify-center w-100"
-                        variant="primary"
+                    <div className="flex justify-end">
+                      <Card.Text
+                        className="fw-bold text-white"
+                        style={{ fontSize: "14px" }}
                       >
-                        Xem chi tiết sản phẩm
-                      </Button>
-                    </Link>
+                        Đã bán({product?.star})
+                      </Card.Text>
+                    </div>
                   </Card.Body>
                 </Card>
               </div>

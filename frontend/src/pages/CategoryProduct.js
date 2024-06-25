@@ -4,6 +4,7 @@ import productCategory from "../helpers/productCategory";
 import VerticalCard from "../components/VerticalCard";
 import SummaryApi from "../common";
 import VerticalCardProduct from "../components/VerticalCardProduct";
+import { Col, Container, Row } from "react-bootstrap";
 
 const CategoryProduct = () => {
   const [data, setData] = useState([]);
@@ -65,7 +66,6 @@ const CategoryProduct = () => {
 
     setFilterCategoryList(arrayOfCategory);
 
-    //format for url change when change on the checkbox
     const urlFormat = arrayOfCategory.map((el, index) => {
       if (arrayOfCategory.length - 1 === index) {
         return `category=${el}`;
@@ -93,12 +93,11 @@ const CategoryProduct = () => {
   useEffect(() => {}, [sortBy]);
 
   return (
-    <div style={{ background: "#3e3e3f" }}>
-      <div className="container mx-auto p-4">
-        {/***desktop version */}
-        <div className="hidden lg:grid grid-cols-[200px,1fr]">
-          {/***left side */}
-          <div
+    <div style={{ background: "#3e3e3f", minHeight:'100vh' }}>
+      <Container className="">
+        <Row className="py-5  " >
+          <Col
+            sm={2}
             className="p-2"
             style={{
               background: "#333",
@@ -112,8 +111,8 @@ const CategoryProduct = () => {
                 Sort by
               </h3>
 
-              <form className="text-sm flex flex-col gap-2 py-2">
-                <div className="flex items-center gap-3">
+              <form className="text-sm flex flex-col gap-2 py-2 " style={{alignItems:'baseline'}}>
+                <div className="flex  gap-3">
                   <input
                     type="radio"
                     name="sortBy"
@@ -124,7 +123,7 @@ const CategoryProduct = () => {
                   <label className="text-white">Price - Low to High</label>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="flex  gap-3">
                   <input
                     type="radio"
                     name="sortBy"
@@ -143,10 +142,10 @@ const CategoryProduct = () => {
                 Category
               </h3>
 
-              <form className="text-sm flex flex-col gap-2 py-2">
+              <form className="text-sm flex flex-col gap-2 py-2" style={{alignItems:'baseline'}}>
                 {productCategory.map((categoryName, index) => {
                   return (
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-3" key={index}>
                       <input
                         type="checkbox"
                         name={"category"}
@@ -166,10 +165,10 @@ const CategoryProduct = () => {
                 })}
               </form>
             </div>
-          </div>
+          </Col>
 
           {/***right side ( product ) */}
-          <div className="px-4">
+          <Col sm={10}>
             {data.length === 0 ? (
               <span className="text-white">Loading...</span>
             ) : (
@@ -178,16 +177,16 @@ const CategoryProduct = () => {
                   Search Results : {data.length}
                 </p>
 
-                <div className="">
+                <div className=""  style={{display:'grid', gridTemplateColumns:'repeat(3,1fr) !important'}}>
                   {data.length !== 0 && !loading && (
-                    <VerticalCard data={data} loading={loading} />
+                    <VerticalCard grid="grid-3" data={data} loading={loading} />
                   )}
                 </div>
               </>
             )}
-          </div>
-        </div>
-      </div>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 };

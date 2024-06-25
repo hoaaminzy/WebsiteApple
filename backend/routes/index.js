@@ -23,12 +23,21 @@ const deleteAddToCartProduct = require("../controller/user/deleteAddToCartProduc
 const searchProduct = require("../controller/product/searchProduct");
 const filterProductController = require("../controller/product/filterProduct");
 const deleteProduct = require("../controller/product/deleteProduct");
+const FeedBackProductController = require("../controller/product/feedbackProduct");
+const getFeedBackController = require("../controller/product/getFeedBack");
+const getBannerController = require("../controller/product/getBanner");
+const BannerProductController = require("../controller/product/bannerProduct");
+const updateBannerController = require("../controller/product/updateBanner");
+const updatePaymentStatusController = require("../controller/product/updateCod");
+const UploadBlogController = require("../controller/blog/uploadBlog");
+const GetBlogController = require("../controller/blog/getBlog");
+const forgetPassword = require("../controller/user/forgetPassword");
 
 router.post("/signup", userSignUpController);
 router.post("/signin", userSignInController);
 router.get("/user-details", authToken, userDetailsController);
 router.get("/userLogout", userLogout);
-
+router.post("/forgetPassword", forgetPassword);
 //admin panel
 router.get("/all-user", authToken, allUsers);
 router.post("/update-user", authToken, updateUser);
@@ -43,6 +52,12 @@ router.post("/product-details", getProductDetails);
 router.get("/search", searchProduct);
 router.post("/filter-product", filterProductController);
 router.delete("/delete-product/:id", deleteProduct);
+router.post("/feedbackProduct", FeedBackProductController);
+router.get("/allFeedBack", getFeedBackController);
+router.get("/allBanner", getBannerController);
+router.post("/create-banner", BannerProductController);
+router.post("/update-banner", updateBannerController);
+router.post("/updatePaymentStatus/:id", updatePaymentStatusController);
 
 //user add to cart
 router.post("/addtocart", authToken, addToCartController);
@@ -51,4 +66,7 @@ router.get("/view-card-product", authToken, addToCartViewProduct);
 router.post("/update-cart-product", authToken, updateAddToCartProduct);
 router.post("/delete-cart-product", authToken, deleteAddToCartProduct);
 
+//blog
+router.post("/create-blog", UploadBlogController);
+router.get("/all-blog", GetBlogController);
 module.exports = router;

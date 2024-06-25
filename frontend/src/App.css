@@ -1,20 +1,211 @@
-.customShadow{
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+.customShadow {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
-
+/* *{
+  overflow-x: hidden
+} */
 /***user table***/
-.userTable{
-    @apply bg-white
+.userTable {
+  @apply bg-white;
 }
-.userTable th{
-    @apply border text-base font-medium
+.userTable th {
+  @apply border text-base font-medium;
 }
 
-.userTable td{
-    @apply border text-base text-center
+.userTable td {
+  @apply border text-base text-center;
 }
 
 /**scrollbar hidden****/
-.scrollbar-none::-webkit-scrollbar{
-    display: none;
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+ul {
+  padding-left: 0rem !important;
+}
+
+.shadow {
+  border-radius: 12px 12px 0 0;
+  border: 1px #e1cfcf;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1), -5px -5px 10px rgba(0, 0, 0, 0.1),
+    -5px 5px 10px rgba(0, 0, 0, 0.1), 5px -5px 10px rgba(0, 0, 0, 0, 1);
+}
+
+.wd-400 {
+  width: 260px;
+  height: 50px;
+  border-radius: 8px;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.outline {
+  outline: none;
+}
+input[type="radio"] {
+  /* display: none; */
+}
+.star {
+  cursor: pointer;
+}
+.slick-arrow {
+  background-color: "red !important";
+}
+.main.ant-layout-content.css-dev-only-do-not-override-3rel02 {
+  overflow: hidden !important;
+}
+
+.shadow {
+  border-radius: 12px 12px 0 0;
+  border: 1px #e1cfcf;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1), -5px -5px 10px rgba(0, 0, 0, 0.1),
+    -5px 5px 10px rgba(0, 0, 0, 0.1), 5px -5px 10px rgba(0, 0, 0, 0, 1);
+}
+
+.wd-400 {
+  width: 260px;
+  height: 50px;
+  border-radius: 8px;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.outline {
+  outline: none;
+}
+
+/* .flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+.contract > li {
+  margin: 10px 0;
+}
+
+.contract2 > li:first-child {
+  margin-bottom: 5px;
+}
+
+.contract,
+.contract2 {
+  padding: 0;
+}
+
+.slick-prev:before, .slick-next:before{
+  font-size: 70px !important;
+  color:black !important;
+}
+.slick-prev {
+  left: -80px !important;
+}
+.slick-next {
+  right: -35px !important;
+}
+.shadow {
+  border-radius: 12px 12px 0 0;
+  border: 1px #e1cfcf;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1), -5px -5px 10px rgba(0, 0, 0, 0.1),
+    -5px 5px 10px rgba(0, 0, 0, 0.1), 5px -5px 10px rgba(0, 0, 0, 0, 1);
+}
+
+.wd-400 {
+  width: 260px;
+  height: 50px;
+  border-radius: 8px;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.outline {
+  outline: none;
+}
+
+/* .flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+.contract > li {
+  margin: 10px 0;
+}
+
+.contract2 > li:first-child {
+  margin-bottom: 5px;
+}
+
+.contrac,
+.contract2 {
+  padding: 0;
+}
+
+.zoomable-image {
+  transition: transform 0.5s ease-in-out;
+  position: relative;
+}
+
+.link-hover:hover .zoomable-image {
+  transform: scale(1.2);
+}
+
+.image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.overlay-text {
+  position: absolute;
+  z-index: 2;
+}
+
+.Navbar li p {
+  margin: 0;
+}
+
+.Navbar li .link {
+  height: 100%;
+  justify-content: space-evenly;
+}
+
+.navbarHover:hover {
+  box-shadow: 4px 4px 8px rgba(35, 35, 35, 0.77),
+    -3px -3px 8px rgba(157, 157, 157, 0.22);
+}
+
+/* .d-flex {
+  display: flex;
+} */
+
+.align-items-start {
+  align-items: flex-start;
+}
+
+.ms-3 {
+  margin-left: 1rem;
+}
+
+.bgr {
+  background-color: rgb(62, 62, 63) !important;
+  color: #fff !important;
+  border-bottom: 1px solid #4f4f4f !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  padding: 20px 0 !important;
+  max-width: 60%;
+}
+
+.fs-22 {
+  font-size: 22px;
+}
+.boxshadow:hover{
+  box-shadow: -4px -4px 8px rgba(134, 134, 134, .2), 4px 4px 8px rgba(28, 28, 28, .4);
 }

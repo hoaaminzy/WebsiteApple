@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
-import ForgotPassowrd from "../pages/ForgotPassowrd";
+
 import SignUp from "../pages/SignUp";
 import AdminPanel from "../pages/AdminPanel";
 import AllUsers from "../pages/AllUsers";
@@ -12,6 +12,13 @@ import ProductDetails from "../pages/ProductDetails";
 import Cart from "../pages/Cart";
 import SearchProduct from "../pages/SearchProduct";
 import HistoryPayment from "../components/HistoryPayment";
+import CheckOut from "../pages/CheckOut";
+import CategoryDetail from "../pages/CategoryDetail";
+import TopCare from "../components/TopCare";
+import TekZone from "../components/TekZone";
+import BlogDetail from "../pages/BlogDetail";
+import PrivateRoute from "../PrivateRoute";
+import InforUser from "../pages/InforUser";
 
 const router = createBrowserRouter([
   {
@@ -19,17 +26,22 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "",
-        element: <Home />,
+        path: "/",
+        element: (
+          // <PrivateRoute>
+          <Home />
+          // </PrivateRoute>
+        ),
+      },
+      {
+        path: "infor-user",
+        element: <InforUser />,
       },
       {
         path: "login",
         element: <Login />,
       },
-      {
-        path: "forgot-password",
-        element: <ForgotPassowrd />,
-      },
+
       {
         path: "sign-up",
         element: <SignUp />,
@@ -44,7 +56,12 @@ const router = createBrowserRouter([
       },
       {
         path: "cart",
-        element: <Cart />,
+
+        element: 
+          // <PrivateRoute>
+            <Cart />,
+          // </PrivateRoute>
+        
       },
       {
         path: "search",
@@ -52,21 +69,43 @@ const router = createBrowserRouter([
       },
       {
         path: "history-payments",
-        element: <HistoryPayment />,
+        element: (
+          // <PrivateRoute>
+            <HistoryPayment />
+          // </PrivateRoute>
+        ),
       },
       {
-        path: "admin-panel",
-        element: <AdminPanel />,
-        children: [
-          {
-            path: "all-users",
-            element: <AllUsers />,
-          },
-          {
-            path: "all-products",
-            element: <AllProducts />,
-          },
-        ],
+        path: "checkout",
+        element: (
+          // <PrivateRoute>
+            <CheckOut />
+          // </PrivateRoute>
+        ),
+      },
+      {
+        path: "topcare",
+        element: <TopCare />,
+      },
+      {
+        path: "tekzone",
+        element: <TekZone />,
+      },
+      {
+        path: "blog/:id",
+        element: <BlogDetail />,
+      },
+      {
+        path: "/:id",
+        element: <CategoryDetail />,
+      },
+      {
+        path: "admin-panel/*",
+        element: (
+          // <PrivateRoute>
+            <AdminPanel />
+          // </PrivateRoute>
+        ),
       },
     ],
   },

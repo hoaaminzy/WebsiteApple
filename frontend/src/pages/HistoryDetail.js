@@ -22,7 +22,6 @@ const HistoryDetail = ({ onClose, data }) => {
   function formatNumber(number) {
     return new Intl.NumberFormat("vi-VN").format(number);
   }
-  // Ensure data is not undefined or null before mapping
   const mapProduct = data
     ?.map((prod) => {
       const foundProduct = allProduct.find(

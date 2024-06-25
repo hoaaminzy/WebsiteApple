@@ -81,6 +81,42 @@ const SummaryApi = {
     url: `${backendDomin}/api/delete-product`,
     method: "delete",
   },
+  feedbackProduct: {
+    url: `${backendDomin}/api/feedbackProduct`,
+    method: "post",
+  },
+  allFeedBackProduct: {
+    url: `${backendDomin}/api/allFeedBack`,
+    method: "post",
+  },
+  createBanner: {
+    url: `${backendDomin}/api/create-banner`,
+    method: "post",
+  },
+  allBanner: {
+    url: `${backendDomin}/api/allBanner`,
+    method: "get",
+  },
+  updateBanner: {
+    url: `${backendDomin}/api/update-banner`,
+    method: "post",
+  },
+  updatePaymentStatus: {
+    url: `${backendDomin}/api/updatePaymentStatus`,
+    method: "post",
+  },
+  uploadBlog: {
+    url: `${backendDomin}/api/create-blog`,
+    method: "post",
+  },
+  getBlog: {
+    url: `${backendDomin}/api/all-blog`,
+    method: "get",
+  },
+  forgetPassword:{
+    url: `${backendDomin}/api/forgetPassword`,
+    method: "post",
+  }
 };
 
 export default SummaryApi;

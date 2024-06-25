@@ -7,6 +7,7 @@ const filterProductController = async(req,res)=>{
         const product = await productModel.find({
             category :  {
                 "$in" : categoryList
+                // toán tử $in được sử dụng để khớp với bất kỳ thể loại nào trong danh sách.
             }
         })
 

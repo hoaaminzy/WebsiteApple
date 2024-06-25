@@ -4,23 +4,43 @@ import SummaryApi from "../common";
 import AdminProductCard from "../components/AdminProductCard";
 import Table from "react-bootstrap/Table";
 import { Container } from "react-bootstrap";
+import { Pagination } from "antd";
+
 const AllProducts = () => {
   const [openUploadProduct, setOpenUploadProduct] = useState(false);
   const [allProduct, setAllProduct] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+  const [totalProducts, setTotalProducts] = useState(0);
 
   const fetchAllProduct = async () => {
-    const response = await fetch(SummaryApi.allProduct.url);
-    const dataResponse = await response.json();
+    try {
+      const response = await fetch(`${SummaryApi.allProduct.url}`);
+      const dataResponse = await response.json();
 
-    console.log("product data", dataResponse);
+      console.log("product data", dataResponse);
 
-    setAllProduct(dataResponse?.data || []);
+      if (dataResponse.success) {
+        setAllProduct(dataResponse.data || []);
+        setTotalProducts(dataResponse.total || 0);
+      } else {
+        console.error(dataResponse.message);
+      }
+    } catch (error) {
+      console.error("Failed to fetch products:", error);
+    }
   };
 
-
+  useEffect(() => {
+    fetchAllProduct(currentPage, pageSize);
+  }, [currentPage, pageSize]);
   useEffect(() => {
     fetchAllProduct();
   }, []);
+  // const handlePageChange = (page, pageSize) => {
+  //   setCurrentPage(page);
+  //   setPageSize(pageSize);
+  // };
 
   return (
     <Container>
@@ -38,6 +58,7 @@ const AllProducts = () => {
         <Table striped bordered hover>
           <thead>
             <tr>
+              <th>STT</th>
               <th>Image</th>
               <th>Product Name</th>
               <th>Price</th>
@@ -52,6 +73,7 @@ const AllProducts = () => {
             {allProduct.map((product, index) => (
               <AdminProductCard
                 data={product}
+                index = {index}
                 key={index}
                 fetchdata={fetchAllProduct}
               />
@@ -59,6 +81,14 @@ const AllProducts = () => {
           </tbody>
         </Table>
       </div>
+
+      <Pagination
+        current={currentPage}
+        pageSize={pageSize}
+        total={totalProducts}
+        // onChange={handlePageChange}
+        showSizeChanger
+      />
 
       {openUploadProduct && (
         <UploadProduct
